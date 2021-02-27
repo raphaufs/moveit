@@ -91,6 +91,7 @@ export function ChallengesProvider({
                     icon: '/favicon.png'
 
                 })
+                
                 //play an audio
                 new Audio('/notification.mp3').play();
             }

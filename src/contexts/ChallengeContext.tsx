@@ -81,9 +81,6 @@ export function ChallengesProvider({
 
         setActiveChallenge(challenge);
 
-        //play an audio
-        new Audio('/notification.mp3').play();
-
         //check is it is a mobile device, if so, do not show the message
         if (!isMobile && Notification.permission === 'granted') {
             new Notification('Novo desafio 🎉', {
@@ -93,7 +90,8 @@ export function ChallengesProvider({
                 icon: '/favicon.png'
 
             })
-
+            //play an audio
+            new Audio('/notification.mp3').play();
         }
     }
 

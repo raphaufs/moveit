@@ -81,20 +81,7 @@ export function ChallengesProvider({
 
         setActiveChallenge(challenge);
 
-        //check is it is a mobile device, if so, do not show the message
-        if (!isMobile)
-            if (Notification.permission === 'granted') {
-                new Notification('Novo desafio 🎉', {
-                    //check MDN Notification: https://developer.mozilla.org/pt-BR/docs/Web/API/Notification
-                    //for more customization properties
-                    body: `Valendo ${challenge.amount} xp!`,
-                    icon: '/favicon.png'
-
-                })
-                
-                //play an audio
-                new Audio('/notification.mp3').play();
-            }
+        
     }
 
     function resetChallenge() {

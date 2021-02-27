@@ -3,6 +3,7 @@ import { createContext, useState, ReactNode, useEffect} from 'react';
 import Cookies from 'js-cookie'; 
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
+import { isMobile } from 'react-device-detect';
 
 interface Challenge {
     //type: string;
@@ -83,7 +84,8 @@ export function ChallengesProvider({
         //play an audio
         new Audio('/notification.mp3').play();
 
-        if (Notification.permission === 'granted') {
+        //check is it is a mobile device, if so, do not show the message
+        if (!isMobile && Notification.permission === 'granted') {
             new Notification('Novo desafio 🎉', {
                 //check MDN Notification: https://developer.mozilla.org/pt-BR/docs/Web/API/Notification
                 //for more customization properties

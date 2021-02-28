@@ -55,10 +55,12 @@ export function ChallengesProvider({
     //everytime that the second parameter from useEffect is an empty array, 
     //the function within the first parameter will be executed only once
     //when the component is called
-    useEffect(() => {
-        //calls the browser to request the user permission to send notifications
-        Notification.requestPermission();
-    }, []);
+    //check is it is a mobile device, if so, do not show the message
+    if (!isMobile)
+        useEffect(() => {
+            //calls the browser to request the user permission to send notifications
+            Notification.requestPermission();
+        }, []);
 
     useEffect(() => {
         Cookies.set('level', String(level));
@@ -81,6 +83,9 @@ export function ChallengesProvider({
 
         setActiveChallenge(challenge);
 
+        //play an audio
+        new Audio('/notification.mp3').play();
+
         //check is it is a mobile device, if so, do not show the message
         if (!isMobile)
             if (Notification.permission === 'granted') {
@@ -91,9 +96,6 @@ export function ChallengesProvider({
                     icon: '/favicon.png'
 
                 })
-                
-                //play an audio
-                new Audio('/notification.mp3').play();
             }
     }
 
